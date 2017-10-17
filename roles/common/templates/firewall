@@ -59,6 +59,5 @@ iptables -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
 iptables -t filter -A OUTPUT -p tcp --dport 20:21 -j ACCEPT
 
 # FTP In
-modprobe ip_conntrack_ftp # ligne facultative avec les serveurs OVH
 iptables -t filter -A INPUT -p tcp --dport 20:21 -j ACCEPT
 iptables -t filter -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
