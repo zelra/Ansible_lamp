@@ -1,11 +1,10 @@
 ---
 
-  - name: new var
+  - name: Add var
     include_vars: dbserver.yml
 
-  - name: install mysql
+  - name: Install mysql
     apt:
-      update_cache=yes
       state=latest
        name={{item}}
     with_items:
