@@ -1,0 +1,31 @@
+---
+#- tasks:
+  - name: install common packages for all servers
+    apt: 
+      update_cache=yes
+      state=latest
+      name={{item}}
+    with_items: 
+    - curl
+    - htop
+    - sudo
+    - tar
+    - unzip
+    - wget
+    - whois
+    - nano
+    - ntp
+    - tree  
+
+  - name: Start the ntp service
+    service: name=ntp state=started enabled=yes
+    tags: ntp
+
+  - name: Create Firewall
+    command: touch /etc/init.d/firewall
+
+  - name: Tempalte firewall
+    copy: src=roles/common/templates/firewall dest=/etc/init.d/firewall owner=root mode=0700
+
+  - name: Setup firewall
+    command: update-rc.d firewall defaults && /etc/init.d/firewall restart
