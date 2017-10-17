@@ -1,6 +1,5 @@
 ---
-#- tasks:
-  - name: install common packages for all servers
+  - name: install common packages
     apt: 
       update_cache=yes
       state=latest
